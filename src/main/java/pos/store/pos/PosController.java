@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import pos.store.pos.model.users.User;
-import pos.store.pos.model.users.UserService;
-import pos.store.pos.model.bill.Bill;
-import pos.store.pos.model.bill.BillService;
+
 import pos.store.pos.model.bills.Bills;
 import pos.store.pos.model.bills.BillsService;
 import pos.store.pos.model.category.Category;
@@ -35,8 +32,7 @@ import pos.store.pos.model.reward.RewardService;;
 @RestController
 public class PosController {
 
-    @Autowired
-    private UserService user;
+   
 
     @Autowired
     private CategoryService category;
@@ -56,20 +52,11 @@ public class PosController {
     @Autowired
     private RewardService reward;
 
-    @Autowired
-    private BillService bill;
+    
 
     @Autowired
     private BillsService bills;
-
-    @GetMapping(value="/Register")
-    public Iterable<User> index(){
-        return user.findAll();
-    }
-    @PostMapping(value="/createUser")
-    public ResponseEntity<Boolean> createUser(@RequestBody User model){
-        return new ResponseEntity<Boolean>(user.createUser(model),HttpStatus.OK);
-    }
+    
 
     //Category
     @GetMapping(value = "/Category")
@@ -181,16 +168,8 @@ public class PosController {
         return new ResponseEntity<Boolean>(reward.delReward(id),HttpStatus.OK);
     }
 
-    //Customer
-    @GetMapping(value = "/Bill")
-    public Iterable<Bill> bill() {
-        return bill.findAll();
-    }
-    @PostMapping(value="/addBill")
-    public ResponseEntity<Boolean> addBill(@RequestBody Bill model){
-        // System.out.println(model);
-        return new ResponseEntity<Boolean>(bill.addBill(model),HttpStatus.OK);
-    }
+  
+    
 
     @GetMapping(value = "/Bills")
     public Iterable<Bills> bills() {
